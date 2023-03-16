@@ -9,8 +9,9 @@ const connectDB = require("./db/connect")
 const situationRoutes = require("./routes/situations")
 
 const corsOptions = {
-  // TODO: To change the origin to the production url once app is ready
-  origin: "http://localhost:5173", // For local development
+  // Uncomment the following line for local development
+  // origin: "http://localhost:5173", // For local development
+  origin: "https://anirveda.osailpdeu.in", // For deployed version
   optionsSuccessStatus: 200,
 }
 
