@@ -11,7 +11,8 @@ const situationRoutes = require("./routes/situations")
 const corsOptions = {
   // Uncomment the following line for local development
   // origin: "http://localhost:5173", // For local development
-  origin: "https://anirveda.osailpdeu.in", // For deployed version
+  // origin: "https://anirveda.osailpdeu.in", // For deployed version
+  origin: ["http://localhost:5173", "https://anirveda.osailpdeu.in"], // Trying multiple origins
   optionsSuccessStatus: 200,
 }
 
