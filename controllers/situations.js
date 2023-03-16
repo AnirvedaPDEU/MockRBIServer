@@ -1,4 +1,4 @@
-const Situation = require("../models/Situation")
+const Situation = require("../models/situation")
 
 const getCurrentSituation = async (req, res) => {
   const allSituations = await Situation.find({})
