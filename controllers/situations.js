@@ -14,9 +14,14 @@ const postSituation = async (req, res) => {
     return res.status(400).json({msg: "Please provide a situation"})
   }
 
-  await Situation.create({situation})
+  await Situation.create({
+    situation: situation.situation,
+    name: situation.name,
+    impact: situation.impact,
+    impactStatus: situation.impactStatus,
+  })
 
-  res.status(200).json({msg: "New situation added successfully"})
+  res.status(200).json({situation})
 }
 
 const deleteSituations = async (req, res) => {
