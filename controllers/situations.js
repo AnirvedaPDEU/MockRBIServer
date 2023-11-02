@@ -7,21 +7,25 @@ const getCurrentSituation = async (req, res) => {
 }
 
 const postSituation = async (req, res) => {
-  // console.log(req.body)
-  const {situation} = req.body
+  console.log(req.body)
+  const {situation, name, options} = req.body
 
-  if (!situation) {
-    return res.status(400).json({msg: "Please provide a situation"})
+  // if (!situation) {
+  //   return res.status(400).json({msg: "Please provide a situation"})
+  // }
+
+  try {
+    const situ = await Situation.create({
+      situation,
+      name,
+      options
+    })
+  
+    res.status(200).json({situ})
   }
-
-  await Situation.create({
-    situation: situation.situation,
-    name: situation.name,
-    impact: situation.impact,
-    impactStatus: situation.impactStatus,
-  })
-
-  res.status(200).json({situation})
+  catch(error) {
+    return res.status(400).json("error")
+  }
 }
 
 const deleteSituations = async (req, res) => {
