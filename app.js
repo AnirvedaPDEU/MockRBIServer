@@ -5,7 +5,7 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 const morgan = require("morgan")
-const connectDB = require("./db/connect")
+const mongoose = require('mongoose')
 const situationRoutes = require("./routes/situations")
 
 const corsOptions = {
@@ -29,16 +29,12 @@ app.get("/", (req, res) => {
   res.send("Testing")
 })
 
-const port = process.env.PORT || 5000
-
-const start = async () => {
-  try {
-    await connectDB(process.env.MONGO_URI)
-    app.listen(port, () =>
-      console.log(`Server is listening on port ${port}...`)
-    )
-  } catch (error) {
-    console.log(error)
-  }
-}
-start()
+mongoose.connect(process.env.MONG_URI)
+    .then(() => {
+        app.listen((process.env.PORT), () => {
+            console.log('Connected to DB and listening to port', process.env.PORT)
+        })
+    })
+    .catch((err)=> {
+        console.log(err)
+    })
