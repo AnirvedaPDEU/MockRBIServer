@@ -8,20 +8,23 @@ const situationSchema = new mongoose.Schema({
   name: {
     type: String,
   },
-  options: [{
-    choice: {
-      type: String,
+  choices: [String],
+  options: [
+    {
+      choice: {
+        type: String,
+      },
+      tag: {
+        type: String,
+      },
+      impact: {
+        type: String,
+      },
+      impactStatus: {
+        type: String,
+      },
     },
-    tag: {
-      type: String,
-    },
-    impact: {
-      type: String,
-    },
-    impactStatus: {
-      type: String,
-    },
-}]
+  ],
 })
 
 module.exports = mongoose.model("Situation", situationSchema)

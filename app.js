@@ -5,7 +5,7 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 const morgan = require("morgan")
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 const situationRoutes = require("./routes/situations")
 
 const corsOptions = {
@@ -29,12 +29,13 @@ app.get("/", (req, res) => {
   res.send("Testing")
 })
 
-mongoose.connect(process.env.MONG_URI)
-    .then(() => {
-        app.listen((process.env.PORT), () => {
-            console.log('Connected to DB and listening to port', process.env.PORT)
-        })
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log("Connected to DB and listening to port", process.env.PORT)
     })
-    .catch((err)=> {
-        console.log(err)
-    })
+  })
+  .catch((err) => {
+    console.log(err)
+  })

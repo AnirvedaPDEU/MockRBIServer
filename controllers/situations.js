@@ -8,7 +8,7 @@ const getCurrentSituation = async (req, res) => {
 
 const postSituation = async (req, res) => {
   console.log(req.body)
-  const {situation, name, options} = req.body
+  const { situation, name, choices, options } = req.body
 
   // if (!situation) {
   //   return res.status(400).json({msg: "Please provide a situation"})
@@ -18,19 +18,19 @@ const postSituation = async (req, res) => {
     const situ = await Situation.create({
       situation,
       name,
-      options
+      choices,
+      options,
     })
-  
-    res.status(200).json({situ})
-  }
-  catch(error) {
+
+    res.status(200).json({ situ })
+  } catch (error) {
     return res.status(400).json("error")
   }
 }
 
 const deleteSituations = async (req, res) => {
   await Situation.deleteMany({})
-  res.status(200).json({msg: "All situations deleted successfully"})
+  res.status(200).json({ msg: "All situations deleted successfully" })
 }
 
-module.exports = {getCurrentSituation, postSituation, deleteSituations}
+module.exports = { getCurrentSituation, postSituation, deleteSituations }
