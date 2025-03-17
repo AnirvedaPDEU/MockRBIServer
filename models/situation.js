@@ -8,23 +8,23 @@ const situationSchema = new mongoose.Schema({
   name: {
     type: String,
   },
-  choices: [String],
+  // choices: [String],
   options: [
     {
       choice: {
         type: String,
       },
-      tag: {
-        type: String,
-      },
+      // tag: {
+      //   type: String,
+      // },
       impact: {
-        type: String,
+        type: Number,
       },
-      impactStatus: {
-        type: String,
-      },
+      // impactStatus: {
+      //   type: String,
+      // },
     },
   ],
 })
 
-module.exports = mongoose.model("Situation", situationSchema)
+module.exports = mongoose.model("Mockrbi", situationSchema)

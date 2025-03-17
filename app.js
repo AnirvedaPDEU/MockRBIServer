@@ -7,12 +7,13 @@ const cors = require("cors")
 const morgan = require("morgan")
 const mongoose = require("mongoose")
 const situationRoutes = require("./routes/situations")
+const leaderBoardRoutes = require("./routes/leaderboard")
 
 const corsOptions = {
   // Uncomment the following line for local development
   // origin: "http://localhost:5173", // For local development
   // origin: "https://anirveda.osailpdeu.in", // For deployed version
-  origin: ["http://localhost:5173", "https://anirveda.osailpdeu.in"], // Trying multiple origins
+  origin: ["http://localhost:5173", "https://anirvedapdeu.in"], // Trying multiple origins
   optionsSuccessStatus: 200,
 }
 
@@ -24,6 +25,7 @@ app.use(morgan("tiny"))
 
 // Routes
 app.use("/api/v1/situation", situationRoutes)
+app.use("/api/v1/leaderboard",leaderBoardRoutes)
 
 app.get("/", (req, res) => {
   res.send("Testing")

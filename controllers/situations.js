@@ -8,7 +8,7 @@ const getCurrentSituation = async (req, res) => {
 
 const postSituation = async (req, res) => {
   console.log(req.body)
-  const { situation, name, choices, options } = req.body
+  const { situation, name, options } = req.body
 
   // if (!situation) {
   //   return res.status(400).json({msg: "Please provide a situation"})
@@ -18,7 +18,6 @@ const postSituation = async (req, res) => {
     const situ = await Situation.create({
       situation,
       name,
-      choices,
       options,
     })
 
