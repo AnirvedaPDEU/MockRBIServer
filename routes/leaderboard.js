@@ -1,5 +1,5 @@
 const express = require("express")
-const {updateBalance,getLeaderBoard} = require("../controllers/leaderboard")
+const {updateBalance,getLeaderBoard, getBalance} = require("../controllers/leaderboard")
 
 const router = express.Router()
 
@@ -10,4 +10,5 @@ router.route("/")
 .get(getLeaderBoard)
 .post(updateBalance)
 
+router.get("/:email",getBalance)
 module.exports = router

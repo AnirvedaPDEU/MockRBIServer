@@ -30,4 +30,17 @@ const getLeaderBoard = async (req, res) => {
     }
 };
 
-module.exports = {updateBalance,getLeaderBoard};
+const getBalance = async(req,res)=>{
+    const {email} = req.params;
+    try{
+        const user = await Leaderboard.findOne({email});
+        if(!user){
+            return res.status(404).json({message:"User not found"});
+            }
+        res.status(200).json({balance:user.balance});
+    }catch(error){
+        res.status(500).json({message:"Error fetching balance",error});
+    }
+}
+
+module.exports = {updateBalance,getLeaderBoard,getBalance};
