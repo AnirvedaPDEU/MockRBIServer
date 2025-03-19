@@ -13,11 +13,15 @@ const corsOptions = {
   // Uncomment the following line for local development
   // origin: "http://localhost:5173", // For local development
   // origin: "https://anirveda.osailpdeu.in", // For deployed version
-  origin: ["http://localhost:5173", "https://anirvedapdeu.in","https://anirveda-pdeu.vercel.app"], // Trying multiple origins
+  origin: ["http://localhost:5173", "https://www.anirvedapdeu.in","https://anirveda-pdeu.vercel.app"], // Trying multiple origins
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   optionsSuccessStatus: 200,
 }
 
 app.use(cors(corsOptions))
+app.options("*", cors(corsOptions)); // Handle preflight requests globally
 
 // Middlewares
 app.use(express.json())
