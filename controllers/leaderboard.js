@@ -2,7 +2,7 @@ const Leaderboard = require("../models/leaderBoard");
 
 // Save or update balance
 const updateBalance =  async (req, res) => {
-    const { email, balance } = req.body;
+    const { email, balance, timeTaken } = req.body;
 
     if (!email) {
         return res.status(400).json({ message: "Email is required for updating balance" });
@@ -11,7 +11,7 @@ const updateBalance =  async (req, res) => {
     try {
         const user = await Leaderboard.findOneAndUpdate(
             { email }, 
-            { balance }, 
+            { balance, timeTaken }, 
             { new: true, upsert: true } // Upsert: Insert if doesn't exist
         );
         res.status(200).json({ message: "Balance updated!", user });
@@ -23,7 +23,7 @@ const updateBalance =  async (req, res) => {
 // Get leaderboard sorted by balance
 const getLeaderBoard = async (req, res) => {
     try {
-        const leaderboard = await Leaderboard.find().sort({ balance: -1 }); // Sort by highest balance
+        const leaderboard = await Leaderboard.find();// Sort by highest balance
         res.status(200).json(leaderboard);
     } catch (error) {
         res.status(500).json({ message: "Error fetching leaderboard", error });
@@ -37,7 +37,7 @@ const getBalance = async(req,res)=>{
         if(!user){
             return res.status(404).json({message:"User not found"});
             }
-        res.status(200).json({balance:user.balance});
+        res.status(200).json({balance:user.balance,timeTaken:user.timeTaken});
     }catch(error){
         res.status(500).json({message:"Error fetching balance",error});
     }
